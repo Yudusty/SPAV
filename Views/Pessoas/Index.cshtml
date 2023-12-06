@@ -1,0 +1,232 @@
+@model List<Pessoas>
+
+<!--<form action="/pessoas/search" method="POST" class="input-group mb-3">
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item active" aria-current="page">Pessoas</li>
+        <li class="breadcrumb-item"><a href="/clientes/clientesindex">Clientes</a></li>
+        <li class="breadcrump-item"><a href="/empresas/empresasindex">Empresas</a></li>
+        <li class="breadcrumb-item"><a href="/menu/index">Login</a></li>
+
+    </ol>
+    
+        <input name="search" class="form-control"/>
+        <button class="btn btn-outline-secondary">Pesquisar</button>
+
+    </form>
+
+<table class="table table-hover">
+
+    <tr>
+
+        <th>Id</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Senha</th>
+        <th>Data de Nascimento</th>
+        <th colspan="2">&nbsp;</th>
+
+    </tr>
+
+</table>
+
+<a href="/pessoas/create" class="btn btn-primary">Create</a>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index de Pessoas</title>
+
+    <style>
+        /* Estilos para a página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #010101cf;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+        }
+
+        input{
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 6px 4px rgba(0, 0, 0, 0.429);
+    }
+
+        input {
+            flex: 2;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 40%;
+        }
+
+        header {
+        background-color: rgb(116, 116, 20);
+        padding: 10px 0;
+        }
+
+        .barra {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Centraliza os itens */
+        }
+
+        .barra {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 20px 680px; /* Espaçamento interno entre o texto e a borda do link */
+        }
+
+        .container {
+        background-color: #000000d6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        text-align: center; 
+        }
+
+        .form{
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border-radius: 0px;
+        padding: 30px;
+        box-shadow: 10px 10px 40px rgb(0, 0, 0);
+        gap: 5px;
+        text-align: center;
+        overflow-y: auto;
+        }
+
+        h3 {
+        margin-top: -20px;
+        font-size: 30px;
+        }
+
+        table {
+            width: 20%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .pedido{
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 10px 10px 40px rgba(47, 45, 45, 0.4);
+        }
+
+        .pedido:hover{
+            background-color: #0056b3;
+        }
+
+    </style>
+
+</head>
+
+<body class="container">
+
+<header>
+    <h3 class="barra">Produtos</h3>
+</header>
+
+    <div class="form">
+
+    <h1>Seus Produtos</h1>
+
+    <div id="tabelaPed" class="tabcontent">
+        <table>
+            <thead>
+                <form action="/pessoas/search" method="POST" class="input-group mb-3">
+                    <input name="search" class="form-control"/>
+                    <button class="btn btn-outline-secondary">Pesquisar</button>
+                </form>
+
+                <tr>
+
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Senha</th>
+                    <th>Data de Nascimento</th>
+                    <th colspan="2">&nbsp;</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach(var pessoas in Model)
+            {
+                <tr>
+
+                    <td>@pessoas.IdPessoa</td>
+                    <td>@pessoas.Nome</td>
+                    <td>@pessoas.Email</td>
+                    <td>@pessoas.Senha</td>
+                    <td>@pessoas.DataNasc</td>
+                    <td><a href="/pessoas/update/@pessoas.IdPessoa" class="btn btn-primary">Atualizar</a></td>
+                    <td><a href="/pessoas/delete/@pessoas.IdPessoa" class="btn btn-danger">Apagar</a></td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+
+    </div>
+    </div>
+</body> 
+</html>

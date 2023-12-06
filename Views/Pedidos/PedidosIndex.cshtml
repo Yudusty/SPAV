@@ -1,0 +1,162 @@
+@model List<Pedidos>
+@*@{ Layout = "/Views/Shared/Layout.cshtml"; }
+
+<ol class="breadcrumb">
+
+    <li class="breadcrumb-item"><a href="/clientes/clientesindex">Clientes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
+
+</ol>
+
+<table class="table table-hover">
+
+    <tr>
+
+        <th>IdCliente</th>
+        <th>Horário</th>
+        <th>Mesa</th>
+        <th>Valor do Pedido</th>
+        <th colspan="2">&nbsp;</th>
+
+    </tr>
+
+@foreach(var pedidos in Model)
+    {
+        <tr>
+
+            <td>@pedidos.IdCliente</td>
+            <td>@pedidos.Horario</td>
+            <td>@pedidos.Mesa</td>
+            <td>@pedidos.ValorPedido</td>
+            <td><a href="/pedidos/pedidosdelete/@pedidos.IdPedido">Delete</a></td>
+            <td><a href="/pedidos/pedidosupdate/@pedidos.IdPedido">Update</a></td>
+
+        </tr>
+    }
+
+</table>
+
+<a href="/pedidos/pedidoscreate" class="btn btn-primary">Create</a>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos</title>
+
+  <style>
+    /* Estilos para a caixa */
+    
+    body{
+      background-color: rgba(0, 0, 0, 0.851);
+    }
+    
+    .container {
+      max-width: 800px;
+      background-color: #ffffff;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Restante dos estilos */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #000000;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #e3e3e3;
+    }
+
+    .delete-btn, .update-btn {
+      padding: 5px 10px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      background-color: #ff6347;
+      color: white;
+      border: none;
+    }
+
+    .update-btn {
+      background-color: #32cd32;
+      color: white;
+      border: none;
+    }
+
+    .h1{
+        align-items: center;
+        position: relative;
+        text-align: center;
+    }
+
+  </style>
+</head>
+
+<div class="container">
+<tbody>
+    
+  <h1 class="h1">Pedidos</h1>
+
+<div id="tabelaPed" class="tabcontent">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>IdCliente</th>
+                <th>Horário</th>
+                <th>Mesa</th>
+                <th>Valor do Pedido</th>
+                <th colspan="2">&nbsp;</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+
+            @foreach(var pedidos in Model)
+            {
+                <tr>
+
+                    <td>@pedidos.IdCliente</td>
+                    <td>@pedidos.Horario</td>
+                    <td>@pedidos.Mesa</td>
+                    <td>@pedidos.ValorPedido</td>
+                    <td><a href="/pedidos/pedidosdelete/@pedidos.IdPedido">Delete</a></td>
+                    <td><a href="/pedidos/pedidosupdate/@pedidos.IdPedido">Update</a></td>
+
+                </tr>
+            }
+            
+        </tbody>
+
+    </table>
+
+    <a href="/clientes/clientesindex"><button class="btn btn-primary">Clientes</button></a>
+    <a href="/clientes/logoutcliente"><button class="btn btn-danger">Sair</button></a>
+
+    
+    </tbody>
+
+    </div>
+</tbody>
+</div>
+</html>
+

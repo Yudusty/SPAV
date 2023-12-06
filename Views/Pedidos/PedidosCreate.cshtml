@@ -1,0 +1,206 @@
+@model Pedidos
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@* <nav aria-label="breadcrumb">
+
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="/pedidos/pedidosindex">Pedidos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+        
+    </ol>
+
+</nav>
+
+<form action="/pedidos/pedidoscreate" method="POST">
+    <input name="Clientes.IdCliente" placeholder="IdCliente" class="from-control"/>
+    <select class="form-control" asp-for="@Model.Produtos.IdProduto" asp-items="ViewBag.Produtos"></select>
+    <input name="Mesa" placeholder = "Nº da Mesa" class="form-control"/>
+    <input name="QTD"  placeholder = "Quantidade" class="form-control"/>
+    <br/>
+
+    <button class="btn btn-primary">Salvar</button>
+</form>
+
+<a href="/menu/indexcliente" class="btn btn-primary">Voltar</a> *@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fazer pedios</title>
+
+    <style>
+        /* Estilos para a página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #010101cf;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+        }
+
+        .container {
+        background-color: #000000d6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        text-align: center; 
+        }
+
+        .form{
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 10px 10px 40px rgb(0, 0, 0);
+        gap: 5px;
+        text-align: center;
+        }
+
+        h1{
+        margin-top: 0px;
+        color: rgb(0, 0, 0);
+        font-size: 30px;
+        }
+
+        .actions {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 7px 14px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #000000;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .botaotabela{
+            font-size: 15px;
+        }
+
+        button{
+            display: inline-block;
+            padding: 7px 14px;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        button{
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        input{
+        font-size: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        text-align: center;
+        box-shadow: 0 6px 4px rgba(0, 0, 0, 0.746);
+
+        flex: 2;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+        }
+
+    </style>
+</head>
+
+<!--<nav aria-label="breadcrumb">
+
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="/produtos/produtosindex">Produtos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+
+    </ol>
+
+</nav>-->
+<body>
+    <div class="form">
+
+        <h1>Fazer Pedidos</h1>
+
+    <form action="/pedidos/pedidoscreate" method="POST">
+    <input name="Clientes.IdCliente" placeholder="IdCliente" class="from-control"/>
+    <select class="form-control" asp-for="@Model.produtos.IdProduto" asp-items="ViewBag.Produtos"></select>
+    <input name="Mesa" placeholder = "Nº da Mesa" class="form-control"/>
+    <input name="QTD"  placeholder = "Quantidade" class="form-control"/>
+    <br/>
+
+    <button class="btn btn-primary">Salvar</button>
+    </form>
+    </div>
+
+    @* <div id="tabelaProd" class="tabcontent">
+    
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>IdProduto</th>
+                <th>IdEmpresa</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Valor Unidade</th>
+                <th colspan="2">&nbsp;</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+                @foreach(var pedidos in Model)
+                {
+                    <tr>
+            
+                        <td>@pedidos.produtos.IdProduto</td>
+                        <td>@pedidos.produtos.IdEmpresa</td>
+                        <td>@pedidos.produtos.Nome</td>
+                        <td>@pedidos.produtos.Descricao</td>
+                        <td>@pedidos.produtos.Qtd</td>
+                        <td>@pedidos.produtos.Valor</td>
+
+                    </tr>
+                }
+
+        </tbody>
+
+    </table> *@
+
+</body>
+</html>

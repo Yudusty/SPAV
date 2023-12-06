@@ -1,0 +1,270 @@
+@using Microsoft.AspNetCore.Http
+@using System.Text.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model List<Produtos>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Empresas</title>
+
+    <style>
+        /* Estilos para a página */
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #000000cf;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 96vh;
+        }
+
+        header {
+        background-color: rgb(116, 116, 20);
+        padding: 10px 0;
+        width: 100%;
+        }
+
+        .barra {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        justify-content: center; /* Centraliza os itens */
+        }
+
+        .barra {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 15px 900px; /* Espaçamento interno entre o texto e a borda do link */
+        }
+
+        .container {
+        background-color: #000000d6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        text-align: center; 
+        }
+
+        .form{
+        display: flex;
+        flex-direction: column;
+        background-color: #cab6b6;
+        border-radius: 20px;
+        padding: 80px;
+        box-shadow: 10px 10px 40px rgb(0, 0, 0);
+        gap: 5px;
+        font-size: 20px;
+        align-items: center;
+
+        width: 800px;
+        height: 740px;
+        flex-shrink: 0; 
+        }
+
+        h3 {
+        font-size: 25px;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 7px 14px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #000000;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .pedido{
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 10px 10px 40px rgba(47, 45, 45, 0.4);
+        }
+
+        .pedido:hover{
+            background-color: #0056b3;
+        }
+
+        .botaotabela{
+            font-size: 15px;
+        }
+
+        button{
+            display: inline-block;
+            padding: 7px 14px;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        button{
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        .titulo{
+            color: black;
+        }
+
+        .bemvindo{
+            color: rgb(255, 255, 255);
+            margin-top: 0px;
+            font-size: 30px;
+        }  
+
+        .caixa{
+            background-color: rgb(110, 96, 96);
+            padding: 20px;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 15%;
+            box-shadow: 10px 10px 20px rgb(0, 0, 0);
+            border-radius: 20px;
+            border-color: white;
+        }
+
+        .side{
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        h1{
+            margin-top: 0px;
+            color: rgb(255, 255, 255);
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+<body class="container">
+
+    <header>
+    <h3 class="barra">Produtos da Empresa</h3>
+    </header>
+
+
+<div class="caixa">
+    
+
+    <div class="bemvindo"> Bem vindo!<br/></div>
+    @{
+        string? session = HttpContextAccessor.HttpContext.Session.GetString("empresa");
+        Pessoas? pessoas = JsonSerializer.Deserialize<Pessoas>(session);
+    }
+
+    <h1>@pessoas.Nome <br> Seu código no nosso site é @pessoas.IdPessoa</h1> 
+    <a href="/menu/indexempresa"><button class="btn btn-danger">Sair</button></a>
+</div>
+
+<div class="form"> 
+
+    <h1 class="titulo">Seus Produtos</h1>
+
+<div id="tabelaFunc" class="tabcontent">
+    
+    <table>
+
+        <thead>
+
+            <form action="/produtos/search" method="POST" class="input-group mb-3">
+                <input name="search" placeholder="Pesquisar" class="form-control"/>
+                <button class="btn btn-primary">Pesquisar</button>
+            </form>
+
+            <tr>
+
+                <th>IdProduto</th>
+                <th>IdEmpresa</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Valor Unidade</th>
+                <th colspan="2">&nbsp;</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+                @foreach(var produtos in Model)
+                {
+                    <tr>
+            
+                        <td>@produtos.IdProduto</td>
+                        <td>@produtos.IdEmpresa</td>
+                        <td>@produtos.Nome</td>
+                        <td>@produtos.Descricao</td>
+                        <td>@produtos.Qtd</td>
+                        <td>@produtos.Valor</td>
+                        <td><a href="/produtos/produtosdelete/@produtos.IdProduto">Apagar</a></td>
+                        <td><a href="/produtos/produtosupdate/@produtos.IdProduto">Atualizar</a></td>
+
+                    </tr>
+                }
+
+        </tbody>
+
+    </table>
+
+    <div>
+        <a href="/produtos/produtoscreate"><button class="btn btn-primary">Adicionar Produto</button></a>
+       
+    </div>
+
+</div>
+    </div>
+</body>
+</html>

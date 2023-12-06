@@ -1,0 +1,136 @@
+@model List<Pedidos>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos</title>
+
+  <style>
+    /* Estilos para a caixa */
+    
+    body{
+      background-color: rgba(0, 0, 0, 0.851);
+    }
+    
+    .container {
+      max-width: 800px;
+      background-color: #ffffff;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Restante dos estilos */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #000000;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #e3e3e3;
+    }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #ffffff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .h1{
+        align-items: center;
+        position: relative;
+        text-align: center;
+    }
+
+  </style>
+</head>
+
+<div class="container">
+<tbody>
+    
+  <h1 class="h1">Pedidos</h1>
+
+<div id="tabelaFunc" class="tabcontent">
+    
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>IdCliente</th>
+                <th>IdPedido</th>
+                <th>Horário</th>
+                <th>Mesa</th>
+                <th>Valor do Pedido</th>
+                <th>Status</th>
+                @* <th>IdColaborador</th> *@
+                <th colspan="2">&nbsp;</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+
+                    @foreach(var pedidos in Model)
+            {
+                <tr>
+
+                    <td>@pedidos.IdCliente</td>
+                    <td>@pedidos.IdPedido</td>
+                    <td>@pedidos.Horario</td>
+                    <td>@pedidos.Mesa</td>
+                    <td>@pedidos.ValorPedido</td>
+                    <td>@pedidos.Status</td>
+                    @* <td>@pedidos.IdColaborador</td> *@
+                    <td><a href="/pedidos/atualizarcolaborador/@pedidos.IdPedido" class="btn btn-primary">Atualizar</a></td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    <div>
+        <a href="/menu/indexcolaborador"><button class="btn btn-danger">Sair</button></a>
+    </div>
+
+</div>
+        </div>
+
+</html>

@@ -1,0 +1,179 @@
+@using Microsoft.AspNetCore.Http
+@using System.Text.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model List<Pedidos>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Empresas</title>
+
+    <style>
+    /body {
+            font-family: Arial, sans-serif;
+            background-color: #010101cf;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh;
+        }
+
+        header {
+        background-color: rgb(116, 116, 20);
+        padding: 10px 0;
+        width: 100%;
+        }
+
+        .barra {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        justify-content: center; 
+        }
+
+        .barra {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 15px ;
+        }
+
+        .container {
+        background-color: #000000d6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        text-align: center; 
+        }
+
+        .form{
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border-radius: 20px;
+        padding: 4px;
+        box-shadow: 10px 10px 40px rgb(0, 0, 0);
+        gap: 5px;
+        text-align: center;
+
+        width: 600px;
+        height: 175px;
+        flex-shrink: 0; 
+        }
+
+        h1{
+        margin-top: 0px;
+        color: rgb(0, 0, 0);
+        font-size: 18px;
+        }
+
+        h3 {
+        font-size: 30px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 7px 14px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #000000;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .pedido{
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 10px 10px 40px rgba(47, 45, 45, 0.4);
+        }
+
+        .pedido:hover{
+            background-color: #0056b3;
+        }
+
+        .botaotabela{
+            font-size: 15px;
+        }
+
+        button{
+            display: inline-block;
+            padding: 7px 14px;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        button{
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+    </style>
+
+</head>
+<body class="container">
+
+    @{
+        string? session = HttpContextAccessor.HttpContext.Session.GetString("colaborador");
+        Pessoas? pessoas = JsonSerializer.Deserialize<Pessoas>(session);
+    }
+
+    <header>
+    <h3 class="barra">Colaborador</h3>
+    </header>
+
+    <div class="form">
+        
+        <h2>Bem vindo!</h2> 
+
+    <h1>@pessoas.Nome <br> Seu código no nosso site é @pessoas.IdPessoa</h1>
+
+
+
+
+    <div>
+        <a href="/menu/indexpedidos"><button class="btn btn-primary">Lista de Pedidos</button></a>
+        <a href="/colaboradores/loginColaborador"><button class="btn btn-danger">Sair</button></a>
+    </div>
+
+
+    </div>
+</body>
+</html>

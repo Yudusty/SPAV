@@ -1,0 +1,148 @@
+@using Microsoft.AspNetCore.Http
+@using System.Text.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model List<Pedidos>
+
+<!--<header>
+    <h3 class="barra">Pedidos</h3>
+</header>
+
+<div class="form">
+        <table>
+            <thead>
+                <tr>
+
+                <th>Valor do Pedido</th>
+                <th colspan="2">&nbsp;</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach(var pedidos in Model)
+            {
+                <tr>
+
+                    <td>@pedidos.ValorPedido</td>
+                    <td><a href="/pedidos/pedidosdelete/@pedidos.IdPedido">Pagar</a></td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+</div>-->
+
+<style>
+    /* Estilos para a página */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #010101cf;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+    }
+
+    .container {
+    background-color: #000000d6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center; 
+    }
+
+    .form{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgb(0, 0, 0);
+    gap: 5px;
+    text-align: center;
+    }
+
+    h3{
+    margin-top: 0px;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    }
+
+    th, td {
+            padding: 8px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+    .btn {
+        display: inline-block;
+        padding: 7px 14px;
+        text-decoration: none;
+        color: #000000;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        margin-left: 10px;
+    }
+
+    .btn-primary {
+        background-color: ;
+        border: 1px solid #000000;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    button{
+        display: inline-block;
+        padding: 7px 14px;
+        text-decoration: none;
+        color: #ffffff;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        margin-left: 10px;
+    }
+
+    button{
+        background-color: #007bff;
+        border: 1px solid #000000;
+    }
+
+    p{
+        margin-top: -10px;
+        font-size: 20px;
+    }
+
+</style>
+
+<div class="form">
+    <header>
+    <h3 class="barra">Pedidos</h3>
+    </header>
+
+    <p>Olá prezado cliente, no momento não estamos aceitando outra forma de pagamento que não seja dinheiro /:</p>
+    <p>Favor fazer o pagamento no caixa, agradecemos a sua compreensão.</p>
+        <table>
+            <thead>
+                <tr>
+
+                <th>Valor do Pedido</th>
+                <th colspan="2">&nbsp;</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach(var pedidos in Model)
+            {
+                <tr>
+
+                    <td>@pedidos.ValorPedido</td>
+                    <td><a href="/pedidos/pedidosdelete/@pedidos.IdPedido" class="btn btn-primary">Pagar</a></td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+</div>

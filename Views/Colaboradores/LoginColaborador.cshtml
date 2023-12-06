@@ -1,0 +1,157 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(0, 0, 0);
+    }
+  
+  .container {
+    background-color: #23a57a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center; 
+    }
+  
+    .image-box {
+    background-color: rgb(255, 255, 255);
+    padding: 5px; 
+    border-radius: 40px;
+    box-shadow: 0 8px 8px rgb(0, 0, 0); 
+    display: inline-block;
+  }
+  
+    .container img {
+    width: relative;
+    max-width: 45%; 
+    height: auto;
+    margin-bottom: 15px; 
+    margin-top: 15px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 40px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgb(0, 0, 0);
+    gap: 5px;
+    text-align: center;
+    }
+  
+    .h1 {
+        margin-bottom: 20px;
+        color: rgb(0, 0, 0);
+    }
+  
+    .input-group {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 6px 4px rgba(0, 0, 0, 0.429);
+    }
+  
+    .input-group input {
+        flex: 2;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+  
+    .btn-criar {
+        background-color: rgb(255, 255, 255);
+        color: #000000;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    }
+  
+    .btn-criar:hover {
+        background-color: rgba(255, 0, 0, 0.825)
+    }
+  
+    .button-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .button-group > * {
+        margin: 20px; 
+    }
+
+    .button-group .button-left {
+        order: 1; /* Posiciona o botão à esquerda */
+        margin-top: auto;
+    }
+
+    .button-group .button-right {
+        order: 3; /* Posiciona o botão à direita */
+        margin-top: auto;
+    }
+
+    .button-group .btn-criar {
+        order: 2; /* Posiciona o botão no meio */
+        box-shadow: 0 6px 4px rgba(0, 0, 0, 0.379);
+        margin: -10px;
+        align-items: center;
+        position: relative;
+        text-align: center;
+    }
+
+    .centro {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+</style>
+
+<!--<ol class="breadcrumb">
+
+    <li class="breadcrumb-item"><a href="/pessoas/index">Pessoas</a></li>
+    <li class="breadcrumb-item active"><a href="/clientes/clientesIndex">Clientes</a></li>
+    <li class="breadcrump-item"><a href="/empresas/empresasindex">Empresas</a></li>
+    <li class="breadcrumb-item" aria-current="page">Login Colaborador</li>
+
+</ol>-->
+
+<body class="container">
+
+<form action='/colaboradores/logincolaborador' method="post">
+    <div class="form">
+    <div class="image-box"><img src="/img/SPAV-preto.png" alt="logo"></div>
+
+    <h1 class="h1">Login</h1>
+
+    <div class="input-group">
+        <input name="pessoas.email" placeholder="Email" class="form-control" required/>
+    </div>
+    <div class="input-group">
+        <input type="password" name="pessoas.senha" placeholder="Senha" class="form-control" required/>
+    </div>
+
+    <div class="button-group"> <button type="submit" class="btn-criar" href="/colaboradores/colaboradoresindex">Entrar</button>
+    </div>
+
+    <div>
+    <a href="/menu/index" class="centro">Voltar</a>
+    </div>
+
+    </div>
+</form>
+
+</body>
+</html>

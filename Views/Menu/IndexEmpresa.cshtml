@@ -1,0 +1,255 @@
+@using Microsoft.AspNetCore.Http
+@using System.Text.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model List<Colaboradores>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Empresas</title>
+
+    <style>
+        /* Estilos para a página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000cf;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 96vh;
+        }
+
+        header {
+        background-color: rgb(116, 116, 20);
+        padding: 10px 0;
+        width: 100%;
+        }
+
+        .barra {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        justify-content: center; /* Centraliza os itens */
+        }
+
+        .barra {
+        text-decoration: none;
+        color: #ffffff;
+        padding: 15px 900px; /* Espaçamento interno entre o texto e a borda do link */
+        }
+
+        .container {
+        background-color: #000000d6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        text-align: center; 
+        }
+
+        h3 {
+        color: black;
+        margin-top: -20px;
+        font-size: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #ffffff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .pedido{
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 10px 10px 40px rgba(47, 45, 45, 0.4);
+        }
+
+        .pedido:hover{
+            background-color: #0056b3;
+        }
+
+/* Atualizar as outras daqui*/
+        .caixa{
+            background-color: rgb(110, 96, 96);
+            padding: 20px;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 15%;
+            box-shadow: 10px 10px 20px rgb(0, 0, 0);
+            border-radius: 20px;
+            border-color: white;
+        }
+
+        .side{
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        h1{
+            margin-top: 0px;
+            color: rgb(255, 255, 255);
+            font-size: 25px;
+        }
+
+        .bemvindo{
+            color: rgb(255, 255, 255);
+            margin-top: 0px;
+            font-size: 30px;
+        }    
+        
+        .form{
+        display: flex;
+        flex-direction: column;
+        background-color: #cab6b6;
+        border-radius: 20px;
+        padding: 80px;
+        box-shadow: 10px 10px 40px rgb(0, 0, 0);
+        gap: 5px;
+
+        width: 840px;
+        height: 740px;
+        flex-shrink: 0; 
+        }
+
+        .titulo{
+            color: black;
+        }
+</style>
+
+</head>
+<body class="container">
+
+    <header>
+    <h3 class="barra">Empresas</h3>
+    </header>
+
+<div class="caixa">
+    
+
+    <div class="bemvindo">Bem vindo!<br/></div>
+    @{
+        string? session = HttpContextAccessor.HttpContext.Session.GetString("empresa");
+        Pessoas? pessoas = JsonSerializer.Deserialize<Pessoas>(session);
+    }
+
+    <h1 class="side">@pessoas.Nome <br> Seu código no nosso site é @pessoas.IdPessoa</h1>
+
+    <a href="/empresas/logoutempresa"><button class="btn btn-danger">Sair</button></a>
+
+</div>
+
+<div class="form">
+
+    <h1 class="titulo">Seus Colaboradores</h1>
+
+<div id="tabelaFunc" class="tabcontent">
+    
+    <table>
+
+        <thead>
+            <tr>
+
+                <th>Id Funcionário</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Senha</th>
+                <th>Salário</th>
+                <th>Data de Nascimento</th>
+                <th colspan="2">&nbsp;</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+                @foreach(var colaboradores in Model)
+                {
+                    <tr>
+
+                        <td>@colaboradores.IdColaborador</td>
+                        <td>@colaboradores.Nome</td>    
+                        <td>@colaboradores.Email</td>
+                        <td>@colaboradores.Senha</td>
+                        <td>@colaboradores.Salario</td>
+                        <td>@colaboradores.DataNasc</td>
+                        <td><a href="/colaboradores/colaboradoresdelete/@colaboradores.IdColaborador" class="botaotabela">Apagar</a></td>
+                        <td><a href="/colaboradores/colaboradoresupdate/@colaboradores.IdColaborador" class="botaotabela">Atualizar</a></td>
+
+                    </tr>
+                }
+
+        </tbody>
+
+    </table>
+
+    <div>
+        <a href="/colaboradores/colaboradorescreate"><button class="btn btn-primary">Cadastrar Colaboradores</button></a>
+        <a href="/produtos/indexempresaprodutos"><button class="btn btn-primary">Produtos</button></a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <a href="/empresas/empresasupdate/@pessoas.IdPessoa" class="btn btn-primary">Editar Conta</a>
+        <br>
+        <br>
+        <a href="/empresas/empresasdelete/@pessoas.IdPessoa" class="btn btn-danger">Apagar</a>
+
+    </div>
+        </div>
+</body>
+</html>
