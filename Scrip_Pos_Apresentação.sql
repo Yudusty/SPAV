@@ -41,7 +41,7 @@ go
 create table Colaboradores
 (
     idColaborador int not null primary key references Pessoas(idPessoa),
-	empresaid int not null references Empresas(idEmpresa),
+    empresaid int not null references Empresas(idEmpresa),
     salario decimal(10,2) not null,
     cpf     varchar(14) not null unique
 )
@@ -107,7 +107,7 @@ select * from Produtos_Pedidos
 go
  
 --------------------------------------------------------------------------------
---2) Comecando as criação das procedures
+--2) Comecando as criaÃ§Ã£o das procedures
 --------------------------------------------------------------------------------
  
 -- Procedure 1 -- Cadastro de Cliente
@@ -349,7 +349,7 @@ begin
 end
 go
  
---Teste de execução
+--Teste de execuÃ§Ã£o
 --exec sp_ediPed 1,6,23.00, 5
 --go
 create Procedure delPed
@@ -472,7 +472,7 @@ go
 --Tabela Pessoas/Colaborador
 exec sp_cadColaboradores'Matheus Grinffo','444.444.444-44','matheus.grinffo@fatec.sp.gov.br','matheus1234',3000, '2004-09-12', 4
 go
-exec sp_cadColaboradores'Wérik Nascimento','555.555.555-55','werik.nascimento@fatec.sp.gov.br','werik1234',2000,'2005-09-12',5
+exec sp_cadColaboradores'WÃ©rik Nascimento','555.555.555-55','werik.nascimento@fatec.sp.gov.br','werik1234',2000,'2005-09-12',5
 go
 exec sp_cadColaboradores'Pedro Arakaki','666.666.666-66','pedro.arakaki@fatec.sp.gov.br','pedro1234',3000,'2006-11-12',6
 go
@@ -487,9 +487,9 @@ select * from Pessoas
 --Tabela Produtos
 exec sp_CadProduto 'Espaguete Com Almodenhas','Massa fina italiana com esferas feitas de carne bovina',23,4.56, 4
 go
-exec sp_CadProduto 'Suchi','Peixe requintado de água  doce, envolta em uma planta muito bem cuidada, originada  ',50,23.00, 5
+exec sp_CadProduto 'Suchi','Peixe requintado de Ã¡gua  doce, envolta em uma planta muito bem cuidada, originada  ',50,23.00, 5
 go
-exec sp_CadProduto 'Pastel de Frango','Frango envolto em uma massa asiatica frita no óleo de produtos naturais',100,16.50, 6
+exec sp_CadProduto 'Pastel de Frango','Frango envolto em uma massa asiatica frita no Ã³leo de produtos naturais',100,16.50, 6
 go
  
 --Tabela Pedidos
@@ -512,29 +512,29 @@ as
     from Pessoas as P inner join Clientes as C on P.idPessoa = C.idCliente
 go
  
---Teste de execução
+--Teste de execuÃ§Ã£o
 select * from v_Clientes
 go
  
 --View Colaborador
 create view v_Colaborador
 as
-    select P.idPessoa[IdColaborador], P.nome [Nome do Colaborador], P.email [Usuario], P.senha [Senha], P.dataNasc [Data de Fundação],  C.cpf [CPF], E.idEmpresa[IdEmpresa]
+    select P.idPessoa[IdColaborador], P.nome [Nome do Colaborador], P.email [Usuario], P.senha [Senha], P.dataNasc [Data de FundaÃ§Ã£o],  C.cpf [CPF], E.idEmpresa[IdEmpresa]
     from Pessoas as P inner join Colaboradores as C on P.idPessoa =C.idColaborador inner join Empresas as E on C.empresaid = E.idEmpresa
 go
  
---Teste de execução
+--Teste de execuÃ§Ã£o
 select * from v_Colaborador
 go
  
 --View Empresas
 create view v_Empresas
 as
-    select P.idPessoa [IdEmpresa], P.nome [Nome da Empresa], P.email [Usuario], P.senha [Senha], P.dataNasc [Data da Fundação], E.CNPJ [CNPJ]
+    select P.idPessoa [IdEmpresa], P.nome [Nome da Empresa], P.email [Usuario], P.senha [Senha], P.dataNasc [Data da FundaÃ§Ã£o], E.CNPJ [CNPJ]
     from Pessoas P inner join Empresas E on P.idPessoa = E.idEmpresa
 go
  
---Teste de execução
+--Teste de execuÃ§Ã£o
 select * from v_Empresas
 go
 
@@ -568,7 +568,7 @@ as
 
 go		
 
---teste de execução
+--teste de execuÃ§Ã£o
 select * from EmpColaborador
 
 select * from Colaboradores
